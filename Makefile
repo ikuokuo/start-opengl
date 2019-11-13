@@ -41,6 +41,11 @@ endef
 submodules:
 	@git submodule update --init
 
+.PHONY: init
+init:
+	@$(call echo,Make $@)
+	@$(SH) ./scripts/init.sh $(INIT_OPTIONS)
+
 .PHONY: build
 build:
 	@$(call md,$(BUILD_DIR))
