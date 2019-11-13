@@ -1,0 +1,81 @@
+# Building C/C++ projects
+#   https://www.appveyor.com/docs/lang/cpp/
+# appveyor.yml reference
+#   http://www.appveyor.com/docs/appveyor-yml
+
+# general
+
+version: '{build}'
+
+branches:
+  only:
+    - master
+
+skip_tags: true
+
+# environment
+
+# https://www.appveyor.com/docs/build-environment/#build-worker-images
+image: Visual Studio 2017
+
+init:
+- ps: |
+    $startTime = (Get-Date)
+    echo "Script started on $startTime"
+
+clone_folder: c:\projects\start-opengl
+
+clone_depth: 5
+
+environment:
+  matrix:
+    - COMPILER: MinGW-w64
+      PLATFORM: x64
+      MSYS2_ROOT: C:\msys64
+      #MINGW_ROOT: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1
+
+# git clone with submodules
+#   https://github.com/appveyor/ci/issues/899
+install:
+  # git bash conflicts with MinGW makefiles
+  - set MY_PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+  - echo MY_PATH=%MY_PATH%
+  - git --version
+
+  - if [%COMPILER%]==[MinGW-w64] set PATH=%MSYS2_ROOT%\usr\bin;%MY_PATH%
+  - if [%COMPILER%]==[MinGW-w64] bash -lc "pacman --needed --noconfirm -Syu"
+  - if [%COMPILER%]==[MinGW-w64] bash -lc "pacman --noconfirm -S mingw-w64-x86_64-glew"
+  - if [%COMPILER%]==[MinGW-w64] bash -lc "pacman --noconfirm -S mingw-w64-x86_64-glfw"
+  - if [%COMPILER%]==[MinGW-w64] bash -lc "pacman --noconfirm -S mingw-w64-x86_64-glm"
+  - if [%COMPILER%]==[MinGW-w64] set PATH=%MSYS2_ROOT%\mingw64\bin;%MY_PATH%
+
+  # - git submodule update --init --recursive
+
+# build
+
+configuration: Release
+
+before_build:
+
+build_script:
+  - mkdir _build
+  - cd _build
+
+  - if [%COMPILER%]==[MinGW-w64] cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=$env:configuration ..
+  - if [%COMPILER%]==[MinGW-w64] cmake --build . --config $env:configuration -- -j2
+
+# global handlers
+
+on_success:
+- ps: |
+    echo Script completed successfuly
+
+on_failure:
+- ps: |
+    echo "Script Failed"
+
+on_finish:
+- ps: |
+    $endTime  = (Get-Date)
+    echo "Ended on $endTime"
+    ($endTime-$startTime).ToString('''Execution time: ''mm'' min ''ss'' sec''')

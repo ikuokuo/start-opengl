@@ -19,6 +19,9 @@ CMAKE_OPTIONS ?= \
 	-DCMAKE_INSTALL_PREFIX=$(MKFILE_DIR)/$(INSTALL_DIR)
 # make CMAKE_OPTIONS=\"-DCMAKE_BUILD_TYPE=Release\ -DCMAKE_INSTALL_PREFIX=_install\"
 
+INIT_OPTIONS ?=
+MAKE_OPTIONS ?=
+
 # Functions
 
 define echo
@@ -51,7 +54,7 @@ build:
 	@$(call md,$(BUILD_DIR))
 	@cd $(BUILD_DIR); \
 	$(CMAKE) $(CMAKE_OPTIONS) ..; \
-	make
+	make $(MAKE_OPTIONS)
 
 .PHONY: install
 install: build
@@ -72,3 +75,5 @@ print:
 	@echo ECHO: $(ECHO)
 	@echo CMAKE: $(CMAKE)
 	@echo CMAKE_OPTIONS: $(CMAKE_OPTIONS)
+	@echo INIT_OPTIONS: $(INIT_OPTIONS)
+	@echo MAKE_OPTIONS: $(MAKE_OPTIONS)

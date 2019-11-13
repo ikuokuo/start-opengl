@@ -15,19 +15,17 @@ source "$BASE_DIR/init_tools.sh"
 _echo_s "Init deps"
 
 if [ "$HOST_OS" = "Linux" ]; then
-  _install_deps "$SUDO apt-get install" pkg-config libglew-dev
   # On Trusty, please install glfw3 from source
   #   E: Unable to locate package libglfw3-dev
-  _install_deps "$SUDO apt-get install" libglfw3-dev
+  _install_deps "$SUDO apt-get install" libglew-dev libglfw3-dev libglm-dev
 elif [ "$HOST_OS" = "Mac" ]; then
-  # brew install glew glfw glm
   _install_deps "brew install" glew glfw glm
 elif [ "$HOST_OS" = "Win" ]; then
   if [ "$HOST_NAME" = "MINGW" ]; then
     if [ "$HOST_ARCH" = "x64" ]; then
-      _install_deps "pacman -S" mingw-w64-x86_64-glfw
+      _install_deps "pacman -S" mingw-w64-x86_64-glew mingw-w64-x86_64-glfw mingw-w64-x86_64-glm
     elif [ "$HOST_ARCH" = "x86" ]; then
-      _install_deps "pacman -S" mingw-w64-i686-glfw
+      _install_deps "pacman -S" mingw-w64-i686-glew mingw-w64-i686-glfw mingw-w64-i686-glm
     else
       _echo_e "Unknown host arch :("
       exit 1

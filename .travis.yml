@@ -1,0 +1,57 @@
+# Building a C++ Project
+#   https://docs.travis-ci.com/user/languages/cpp/
+# Travis CI Build Config Explorer
+#   https://config.travis-ci.com/explore
+
+language: cpp
+sudo: false
+
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      name: "Linux Xenial"
+      addons:
+        apt:
+          packages:
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+      env:
+        - MATRIX_EVAL="CXX=g++"
+        - INIT_OPTIONS="-y"
+    - os: osx
+      osx_image: xcode10
+      compiler: clang
+      env:
+        - MATRIX_EVAL="CXX=clang++"
+        - INIT_OPTIONS=""
+
+before_install:
+  # Eval env variables
+  - eval "${MATRIX_EVAL}"
+  # Install cmake
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      # sudo apt-get update;
+      sudo apt-get install -y --upgrade cmake;
+    elif [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+      which cmake || brew install -y cmake;
+    fi
+  # Get logical CPU number
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      export CPU_NUM=`grep -c ^processor /proc/cpuinfo`;
+    elif [ "$TRAVIS_OS_NAME" == "osx" ]; then
+      export CPU_NUM=`sysctl -n hw.logicalcpu_max`;
+    fi
+
+install:
+
+before_script:
+
+script:
+  - cd ${TRAVIS_BUILD_DIR}
+  - make init INIT_OPTIONS="${INIT_OPTIONS}"
+  - make install MAKE_OPTIONS="-j $CPU_NUM"
