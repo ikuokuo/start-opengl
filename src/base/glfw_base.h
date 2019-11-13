@@ -3,7 +3,7 @@
 #include <memory>
 #include <string>
 
-#include "glm/ext/vector_float4.hpp"
+#include "glm/vec4.hpp"
 
 #include "glfw_base_types.h"
 

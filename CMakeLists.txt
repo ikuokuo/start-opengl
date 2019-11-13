@@ -45,7 +45,9 @@ find_package(GLFW3 REQUIRED)
 
 ## glm
 
-find_package(GLM REQUIRED)
+# libglm-dev is outdated (ext/), use explicit version instead
+#find_package(GLM REQUIRED)
+set(GLM_ROOT "${MY_ROOT}/third_party/glm")
 
 ## libs
 
@@ -91,6 +93,7 @@ include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
 include_directories(
+  ${GLM_ROOT}
   ${MY_ROOT}/include
 )
 
