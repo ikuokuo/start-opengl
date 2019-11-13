@@ -23,6 +23,7 @@ matrix:
         - INIT_OPTIONS="-y"
     - os: osx
       osx_image: xcode10
+      name: "macOS Xcode10"
       compiler: clang
       env:
         - MATRIX_EVAL="CXX=clang++"

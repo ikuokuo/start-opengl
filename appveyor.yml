@@ -46,10 +46,9 @@ install:
   - if [%COMPILER%]==[MinGW-w64] bash -lc "pacman --needed --noconfirm -Syu"
   - if [%COMPILER%]==[MinGW-w64] bash -lc "pacman --noconfirm -S mingw-w64-x86_64-glew"
   - if [%COMPILER%]==[MinGW-w64] bash -lc "pacman --noconfirm -S mingw-w64-x86_64-glfw"
-  - if [%COMPILER%]==[MinGW-w64] bash -lc "pacman --noconfirm -S mingw-w64-x86_64-glm"
   - if [%COMPILER%]==[MinGW-w64] set PATH=%MSYS2_ROOT%\mingw64\bin;%MY_PATH%
 
-  # - git submodule update --init --recursive
+  - git submodule update --init --recursive
 
 # build
 
