@@ -12,3 +12,11 @@ target_include_directories(glfw_demo PUBLIC
 )
 
 target_link_libraries(glfw_demo ${LIBS})
+
+## install
+
+install(TARGETS glfw_demo
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
