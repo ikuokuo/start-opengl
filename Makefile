@@ -45,7 +45,7 @@ submodules:
 	@git submodule update --init
 
 .PHONY: init
-init:
+init: submodules
 	@$(call echo,Make $@)
 	@$(SH) ./scripts/init.sh $(INIT_OPTIONS)
 
