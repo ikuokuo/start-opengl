@@ -11,7 +11,7 @@ target_include_directories(glfw_demo PUBLIC
   "$<BUILD_INTERFACE:${MY_CURR}>"
 )
 
-target_link_libraries(glfw_demo ${LIBS})
+target_link_libraries(glfw_demo ${GL_LIBS})
 
 ## install
 

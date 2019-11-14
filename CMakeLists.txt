@@ -49,17 +49,25 @@ find_package(GLFW3 REQUIRED)
 #find_package(GLM REQUIRED)
 set(GLM_ROOT "${MY_ROOT}/third_party/glm")
 
+## stb
+
+set(STB_ROOT "${MY_ROOT}/third_party/stb")
+
+## assimp
+
+find_package(ASSIMP REQUIRED)
+
 ## libs
 
 if(HOST_OS STREQUAL "Win")
-  set(LIBS glfw3 opengl32)
+  set(GL_LIBS glfw3 opengl32)
 elseif(HOST_OS STREQUAL "Linux")
   find_package(OpenGL REQUIRED)
   add_definitions(${OPENGL_DEFINITIONS})
   find_package(X11 REQUIRED)
   # note that the order is important for setting the libs
   # use pkg-config --libs $(pkg-config --print-requires --print-requires-private glfw3) in a terminal to confirm
-  set(LIBS ${GLFW3_LIBRARY} X11 Xrandr Xinerama Xi Xxf86vm Xcursor GL dl pthread)
+  set(GL_LIBS ${GLFW3_LIBRARY} X11 Xrandr Xinerama Xi Xxf86vm Xcursor GL dl pthread)
   set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
 elseif(HOST_OS STREQUAL "Mac")
   status_var(CMAKE_OSX_SYSROOT)
@@ -71,13 +79,13 @@ elseif(HOST_OS STREQUAL "Mac")
   mark_as_advanced(COCOA_LIBRARY OpenGL_LIBRARY)
   set(APPLE_LIBS ${COCOA_LIBRARY} ${IOKit_LIBRARY} ${OpenGL_LIBRARY} ${CoreVideo_LIBRARY})
   set(APPLE_LIBS ${APPLE_LIBS} ${GLFW3_LIBRARY})
-  set(LIBS ${LIBS} ${APPLE_LIBS})
+  set(GL_LIBS ${GL_LIBS} ${APPLE_LIBS})
 else()
-  set(LIBS )
+  set(GL_LIBS )
 endif()
 
-list(APPEND LIBS GLEW::GLEW)
-status("LIBS: ${LIBS}")
+list(APPEND GL_LIBS GLEW::GLEW)
+status("GL_LIBS: ${GL_LIBS}")
 
 # targets
 
@@ -94,6 +102,8 @@ include(GNUInstallDirs)
 
 include_directories(
   ${GLM_ROOT}
+  ${STB_ROOT}
+  ${ASSIMP_INCLUDE_DIR}
   ${MY_ROOT}/include
 )
 
