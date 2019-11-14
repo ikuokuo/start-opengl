@@ -20,3 +20,7 @@ install(TARGETS glfw_demo
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
+
+# tutorials
+
+add_subdirectory(${MY_CURR}/learnopengl)
