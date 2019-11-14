@@ -20,7 +20,7 @@ class Cube {
   GLuint VBO;
   GLuint Texture1;
   GLuint Texture2;
-  std::shared_ptr<Shader> Shader;
+  std::shared_ptr<::Shader> Shader;
 
   Cube() = default;
   ~Cube() = default;

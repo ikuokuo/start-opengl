@@ -32,7 +32,7 @@ class Shader {
     CheckCompileErrors(fragmentShader, "FRAGMENT");
 
     // geometry shader
-    GLuint geometryShader;
+    GLuint geometryShader = 0;
     if (geometry_shader_code != nullptr) {
       geometryShader = glCreateShader(GL_GEOMETRY_SHADER);
       glShaderSource(geometryShader, 1, &geometry_shader_code, NULL);

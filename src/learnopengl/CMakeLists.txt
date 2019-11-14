@@ -18,9 +18,10 @@ macro(add_gl_executable NAME)
     "$<BUILD_INTERFACE:${MY_CURR}/..>"
   )
   target_link_libraries(${NAME} ${GL_LIBS} ${THIS_LIBS})
+  target_compile_definitions(${NAME} PUBLIC
+    MY_DIR="${MY_CURR}/.."
+  )
 endmacro()
-
-add_compile_definitions(MY_DIR="${MY_CURR}")
 
 add_subdirectory(${MY_CURR}/1_getting_started)
 add_subdirectory(${MY_CURR}/2_lighting)
