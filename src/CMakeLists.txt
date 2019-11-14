@@ -24,3 +24,4 @@ install(TARGETS glfw_demo
 # tutorials
 
 add_subdirectory(${MY_CURR}/learnopengl)
+add_subdirectory(${MY_CURR}/opengl-tutorial)
