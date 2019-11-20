@@ -148,8 +148,8 @@ void GlfwBase::OnWindowBeforeCreate() {
   const char* glsl_version = "#version 130";
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-  //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
-  //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // 3.0+ only
+  // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
+  // glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // 3.0+ only
 #endif
   glsl_version_ = glsl_version;
 }
@@ -158,7 +158,7 @@ void GlfwBase::OnWindowCreated(GLFWwindow *window) {
   glfwMakeContextCurrent(window);
   glfwSetFramebufferSizeCallback(window, glfw_framebuffer_size_callback);
   glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
-  glfwSwapInterval(1); // Enable vsync
+  glfwSwapInterval(1);  // Enable vsync
 }
 
 void GlfwBase::OnInit() {

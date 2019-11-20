@@ -24,7 +24,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
   void OnGlfwInit(GlfwBase *) override {
     // Initialize GLEW
-    glewExperimental = true; // Needed in core profile
+    glewExperimental = true;  // Needed in core profile
     if (glewInit() != GLEW_OK) {
       std::cerr << "Failed to initialize GLEW" << std::endl;
       return;
@@ -182,7 +182,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
   void OnGlfwDraw(GlfwBase *glfw) override {
     // render
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // also clear the depth buffer now!
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // also clear the depth buffer now!
 
     // bind textures on corresponding texture units
     glActiveTexture(GL_TEXTURE0);
@@ -194,7 +194,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     shader_->Use();
 
     // create transformations
-    glm::mat4 model         = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 model         = glm::mat4(1.0f);  // make sure to initialize matrix to identity matrix first
     glm::mat4 view          = glm::mat4(1.0f);
     glm::mat4 projection    = glm::mat4(1.0f);
     model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));

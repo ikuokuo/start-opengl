@@ -205,8 +205,8 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     lightColor.x = sin(glfwGetTime() * 2.0f);
     lightColor.y = sin(glfwGetTime() * 0.7f);
     lightColor.z = sin(glfwGetTime() * 1.3f);
-    glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f); // decrease the influence
-    glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
+    glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f);  // decrease the influence
+    glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);  // low influence
     lighting_shader_.SetVec3("light.ambient", ambientColor);
     lighting_shader_.SetVec3("light.diffuse", diffuseColor);
     lighting_shader_.SetVec3("light.specular", 1.0f, 1.0f, 1.0f);
@@ -214,7 +214,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     // material properties
     lighting_shader_.SetVec3("material.ambient", 1.0f, 0.5f, 0.31f);
     lighting_shader_.SetVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
-    lighting_shader_.SetVec3("material.specular", 0.5f, 0.5f, 0.5f); // specular lighting doesn't have full effect on this object's material
+    lighting_shader_.SetVec3("material.specular", 0.5f, 0.5f, 0.5f);  // specular lighting doesn't have full effect on this object's material
     lighting_shader_.SetFloat("material.shininess", 32.0f);
 
     // view/projection transformations
@@ -238,7 +238,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     lamp_shader_.SetMat4("view", view);
     model = glm::mat4(1.0f);
     model = glm::translate(model, light_pos_);
-    model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+    model = glm::scale(model, glm::vec3(0.2f));  // a smaller cube
     lamp_shader_.SetMat4("model", model);
 
     glBindVertexArray(light_vao_);

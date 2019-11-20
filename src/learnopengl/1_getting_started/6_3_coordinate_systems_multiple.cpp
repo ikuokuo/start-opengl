@@ -24,7 +24,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
   void OnGlfwInit(GlfwBase *) override {
     // Initialize GLEW
-    glewExperimental = true; // Needed in core profile
+    glewExperimental = true;  // Needed in core profile
     if (glewInit() != GLEW_OK) {
       std::cerr << "Failed to initialize GLEW" << std::endl;
       return;
@@ -182,7 +182,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
   void OnGlfwDraw(GlfwBase *glfw) override {
     // render
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // also clear the depth buffer now!
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // also clear the depth buffer now!
 
     // bind textures on corresponding texture units
     glActiveTexture(GL_TEXTURE0);
@@ -194,12 +194,12 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     shader_->Use();
 
     // create transformations
-    glm::mat4 view          = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 view          = glm::mat4(1.0f);  // make sure to initialize matrix to identity matrix first
     glm::mat4 projection    = glm::mat4(1.0f);
     projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
     view       = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
     // pass transformation matrices to the shader
-    shader_->SetMat4("projection", projection); // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+    shader_->SetMat4("projection", projection);  // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
     shader_->SetMat4("view", view);
 
     // world space positions of our cubes

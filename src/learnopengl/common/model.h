@@ -27,14 +27,14 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
 class Model {
  public:
   /*  Model Data */
-  std::vector<Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
+  std::vector<Texture> textures_loaded;  // stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
   std::vector<Mesh> meshes;
   std::string directory;
   bool gammaCorrection;
 
   /*  Functions  */
   Model() = default;
-  Model(std::string const &path, bool gamma = false) {
+  explicit Model(std::string const &path, bool gamma = false) {
     Create(path, gamma);
   }
 
@@ -57,7 +57,7 @@ class Model {
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
     // check for errors
-    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) { // if is Not Zero
+    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {  // if is Not Zero
       std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
       return;
     }
@@ -92,7 +92,7 @@ class Model {
     // Walk through each of the mesh's vertices
     for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
       Vertex vertex;
-      glm::vec3 vector; // we declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
+      glm::vec3 vector;  // we declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
       // positions
       vector.x = mesh->mVertices[i].x;
       vector.y = mesh->mVertices[i].y;
@@ -104,7 +104,7 @@ class Model {
       vector.z = mesh->mNormals[i].z;
       vertex.Normal = vector;
       // texture coordinates
-      if (mesh->mTextureCoords[0]) { // does the mesh contain texture coordinates?
+      if (mesh->mTextureCoords[0]) {  // does the mesh contain texture coordinates?
         glm::vec2 vec;
         // a vertex can contain up to 8 different texture coordinates. We thus make the assumption that we won't
         // use models where a vertex can have multiple texture coordinates so we always take the first set (0).
@@ -171,7 +171,7 @@ class Model {
       for (unsigned int j = 0; j < textures_loaded.size(); j++) {
         if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0) {
           textures.push_back(textures_loaded[j]);
-          skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
+          skip = true;  // a texture with the same filepath has already been loaded, continue to next one. (optimization)
           break;
         }
       }
@@ -182,7 +182,7 @@ class Model {
         texture.type = typeName;
         texture.path = str.C_Str();
         textures.push_back(texture);
-        textures_loaded.push_back(texture); // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
+        textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
       }
     }
     return textures;
@@ -201,10 +201,10 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
   unsigned char *data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
   if (data) {
     GLenum format;
-    if (nrComponents == 1)      format = GL_RED;
-    else if (nrComponents == 3) format = GL_RGB;
-    else if (nrComponents == 4) format = GL_RGBA;
-    else {
+    if (nrComponents == 1)        { format = GL_RED;
+    } else if (nrComponents == 3) { format = GL_RGB;
+    } else if (nrComponents == 4) { format = GL_RGBA;
+    } else {
       std::cout << "Texture failed to load at path: " << path << std::endl;
       stbi_image_free(data);
       return textureID;

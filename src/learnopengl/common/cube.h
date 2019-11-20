@@ -78,7 +78,7 @@ class Cube {
     glBindVertexArray(VAO);
     for (std::size_t i = 0, n = positions.size(); i < n; i++) {
       // calculate the model matrix for each object and pass it to shader before drawing
-      glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+      glm::mat4 model = glm::mat4(1.0f);  // make sure to initialize matrix to identity matrix first
       model = glm::translate(model, positions[i]);
       float angle = 20.0f * i;
       model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));

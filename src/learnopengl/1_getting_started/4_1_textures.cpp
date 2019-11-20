@@ -6,7 +6,7 @@
 #include <GLFW/glfw3.h>
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include <stb_image.h>
 
 #include "common/shader.h"
 
@@ -17,7 +17,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
   void OnGlfwInit(GlfwBase *) override {
     // Initialize GLEW
-    glewExperimental = true; // Needed in core profile
+    glewExperimental = true;  // Needed in core profile
     if (glewInit() != GLEW_OK) {
       std::cerr << "Failed to initialize GLEW" << std::endl;
       return;
@@ -62,14 +62,14 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {
       // positions          // colors           // texture coords
-       0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-       0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-      -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-      -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
+       0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,  // top right
+       0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,  // bottom right
+      -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,  // bottom left
+      -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f,  // top left
     };
     unsigned int indices[] = {
-      0, 1, 3, // first triangle
-      1, 2, 3  // second triangle
+      0, 1, 3,  // first triangle
+      1, 2, 3,  // second triangle
     };
 
     glGenVertexArrays(1, &vao_);
@@ -95,9 +95,9 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
     // load and create a texture
     glGenTextures(1, &texture_);
-    glBindTexture(GL_TEXTURE_2D, texture_); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
+    glBindTexture(GL_TEXTURE_2D, texture_);  // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
     // set the texture wrapping parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);  // set texture wrapping to GL_REPEAT (default wrapping method)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     // set texture filtering parameters
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

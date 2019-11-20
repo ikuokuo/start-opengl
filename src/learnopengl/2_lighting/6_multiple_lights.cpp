@@ -420,7 +420,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     for (unsigned int i = 0; i < 4; i++) {
       model = glm::mat4(1.0f);
       model = glm::translate(model, point_light_positions_[i]);
-      model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
+      model = glm::scale(model, glm::vec3(0.2f));  // Make it a smaller cube
       lamp_shader_.SetMat4("model", model);
       glDrawArrays(GL_TRIANGLES, 0, 36);
     }

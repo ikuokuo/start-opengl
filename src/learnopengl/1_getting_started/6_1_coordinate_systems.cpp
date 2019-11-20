@@ -24,7 +24,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
   void OnGlfwInit(GlfwBase *) override {
     // Initialize GLEW
-    glewExperimental = true; // Needed in core profile
+    glewExperimental = true;  // Needed in core profile
     if (glewInit() != GLEW_OK) {
       std::cerr << "Failed to initialize GLEW" << std::endl;
       return;
@@ -70,14 +70,14 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {
       // positions          // texture coords
-       0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right
-       0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // bottom right
-      -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // bottom left
-      -0.5f,  0.5f, 0.0f,   0.0f, 1.0f  // top left
+       0.5f,  0.5f, 0.0f,   1.0f, 1.0f,  // top right
+       0.5f, -0.5f, 0.0f,   1.0f, 0.0f,  // bottom right
+      -0.5f, -0.5f, 0.0f,   0.0f, 0.0f,  // bottom left
+      -0.5f,  0.5f, 0.0f,   0.0f, 1.0f,  // top left
     };
     unsigned int indices[] = {
-      0, 1, 3, // first triangle
-      1, 2, 3  // second triangle
+      0, 1, 3,  // first triangle
+      1, 2, 3,  // second triangle
     };
 
     glGenVertexArrays(1, &vao_);
@@ -163,7 +163,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     shader_->Use();
 
     // create transformations
-    glm::mat4 model         = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 model         = glm::mat4(1.0f);  // make sure to initialize matrix to identity matrix first
     glm::mat4 view          = glm::mat4(1.0f);
     glm::mat4 projection    = glm::mat4(1.0f);
     model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));

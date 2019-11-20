@@ -328,7 +328,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
   GLuint vbo_;
   GLuint diffuse_map_;
   GLuint specular_map_;
-  //glm::vec3 light_pos_{1.2f, 1.0f, 2.0f};
+  // glm::vec3 light_pos_{1.2f, 1.0f, 2.0f};
   std::vector<glm::vec3> cube_positions_;
 };
 

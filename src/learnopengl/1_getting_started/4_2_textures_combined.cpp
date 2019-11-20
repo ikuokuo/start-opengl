@@ -17,7 +17,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
   void OnGlfwInit(GlfwBase *) override {
     // Initialize GLEW
-    glewExperimental = true; // Needed in core profile
+    glewExperimental = true;  // Needed in core profile
     if (glewInit() != GLEW_OK) {
       std::cerr << "Failed to initialize GLEW" << std::endl;
       return;
@@ -63,14 +63,14 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {
       // positions          // colors           // texture coords
-       0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-       0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-      -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-      -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
+       0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,  // top right
+       0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,  // bottom right
+      -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,  // bottom left
+      -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f,  // top left
     };
     unsigned int indices[] = {
-      0, 1, 3, // first triangle
-      1, 2, 3  // second triangle
+      0, 1, 3,  // first triangle
+      1, 2, 3,  // second triangle
     };
 
     glGenVertexArrays(1, &vao_);
@@ -139,9 +139,9 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
 
     // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
-    shader_->Use(); // don't forget to activate/use the shader before setting uniforms!
-    glUniform1i(glGetUniformLocation(shader_->ID, "texture1"), 0); // set it manually
-    shader_->SetInt("texture2", 1); // or with shader class
+    shader_->Use();  // don't forget to activate/use the shader before setting uniforms!
+    glUniform1i(glGetUniformLocation(shader_->ID, "texture1"), 0);  // set it manually
+    shader_->SetInt("texture2", 1);  // or with shader class
   }
 
   void OnGlfwDraw(GlfwBase *glfw) override {

@@ -44,7 +44,7 @@ GLuint LoadShaderCodes(const char *vertex_shader_code,
   }
 
   // Link the program
-  //std::cout << "Linking program" << std::endl;
+  // std::cout << "Linking program" << std::endl;
   GLuint ProgramID = glCreateProgram();
   glAttachShader(ProgramID, VertexShaderID);
   glAttachShader(ProgramID, FragmentShaderID);

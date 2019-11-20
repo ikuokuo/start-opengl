@@ -24,14 +24,14 @@ glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f, 0.0f);
 
 bool firstMouse = true;
-float yaw   = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
+float yaw   = -90.0f;  // yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
 float pitch =  0.0f;
 float lastX =  800.0f / 2.0;
 float lastY =  600.0 / 2.0;
 float fov   =  45.0f;
 
 // timing
-float deltaTime = 0.0f;	// time between current frame and last frame
+float deltaTime = 0.0f;  // time between current frame and last frame
 float lastFrame = 0.0f;
 
 void glfw_framebuffer_size_callback(GLFWwindow *window, int width, int height);
@@ -58,7 +58,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
   void OnGlfwInit(GlfwBase *) override {
     // Initialize GLEW
-    glewExperimental = true; // Needed in core profile
+    glewExperimental = true;  // Needed in core profile
     if (glewInit() != GLEW_OK) {
       std::cerr << "Failed to initialize GLEW" << std::endl;
       return;
@@ -263,7 +263,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     glBindVertexArray(vao_);
     for (unsigned int i = 0; i < 10; i++) {
       // calculate the model matrix for each object and pass it to shader before drawing
-      glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+      glm::mat4 model = glm::mat4(1.0f);  // make sure to initialize matrix to identity matrix first
       model = glm::translate(model, cubePositions[i]);
       float angle = 20.0f * i;
       model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
@@ -319,11 +319,11 @@ void glfw_mouse_callback(GLFWwindow *, double xpos, double ypos) {
   }
 
   float xoffset = xpos - lastX;
-  float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+  float yoffset = lastY - ypos;  // reversed since y-coordinates go from bottom to top
   lastX = xpos;
   lastY = ypos;
 
-  float sensitivity = 0.1f; // change this value to your liking
+  float sensitivity = 0.1f;  // change this value to your liking
   xoffset *= sensitivity;
   yoffset *= sensitivity;
 

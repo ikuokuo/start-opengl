@@ -57,7 +57,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     our_model_.Create(MY_DIR "/objects/nanosuit/nanosuit.obj");
 
     // draw in wireframe
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   }
 
   bool IsGlfwDrawOverride(GlfwBase *) override { return true; }
@@ -84,8 +84,8 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
     // render the loaded model
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // translate it down so it's at the center of the scene
-    model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
+    model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));  // translate it down so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));  // it's a bit too big for our scene, so scale it down
     our_shader_.SetMat4("model", model);
 
     our_model_.Draw(our_shader_);

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <stdexcept>
 #include <utility>
 #include <vector>
@@ -190,7 +191,7 @@ class CameraHelper : public CameraHelperInterface {
     }
 
     float xoffset = xpos - last_x_;
-    float yoffset = last_y_ - ypos; // reversed since y-coordinates go from bottom to top
+    float yoffset = last_y_ - ypos;  // reversed since y-coordinates go from bottom to top
 
     last_x_ = xpos;
     last_y_ = ypos;
@@ -213,7 +214,7 @@ class CameraHelper : public CameraHelperInterface {
   float last_x_;
   float last_y_;
   // timing
-  float delta_time_ = 0.0f; // time between current frame and last frame
+  float delta_time_ = 0.0f;  // time between current frame and last frame
   float last_frame_ = 0.0f;
 };
 
@@ -280,7 +281,7 @@ class CameraHelper2 : public CameraHelperInterface {
   }
   static void glew_init() {
     // Initialize GLEW
-    glewExperimental = true; // Needed in core profile
+    glewExperimental = true;  // Needed in core profile
     if (glewInit() != GLEW_OK) {
       std::cerr << "Failed to initialize GLEW" << std::endl;
       return;

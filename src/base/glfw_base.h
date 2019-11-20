@@ -26,8 +26,8 @@ class GlfwBase {
 
   void SetCallback(Callback callback);
 
-  glm::vec4 clear_color() const { return clear_color_; };
-  void set_clear_color(const glm::vec4 &color) { clear_color_ = color; };
+  glm::vec4 clear_color() const { return clear_color_; }
+  void set_clear_color(const glm::vec4 &color) { clear_color_ = color; }
 
   virtual int Run(
       const GlfwInitParams &params = GlfwInitParams{},

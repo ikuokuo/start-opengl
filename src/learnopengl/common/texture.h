@@ -16,10 +16,10 @@ inline GLuint LoadTexture(char const *path) {
   unsigned char *data = stbi_load(path, &width, &height, &nrComponents, 0);
   if (data) {
     GLenum format;
-    if (nrComponents == 1)        format = GL_RED;
-    else if (nrComponents == 3)   format = GL_RGB;
-    else if (nrComponents == 4)   format = GL_RGBA;
-    else {
+    if (nrComponents == 1)        { format = GL_RED;
+    } else if (nrComponents == 3) { format = GL_RGB;
+    } else if (nrComponents == 4) { format = GL_RGBA;
+    } else {
       std::cout << "Texture failed to load at path: " << path << std::endl;
       stbi_image_free(data);
       return textureID;

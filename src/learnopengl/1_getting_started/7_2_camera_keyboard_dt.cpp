@@ -24,7 +24,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
   void OnGlfwInit(GlfwBase *) override {
     // Initialize GLEW
-    glewExperimental = true; // Needed in core profile
+    glewExperimental = true;  // Needed in core profile
     if (glewInit() != GLEW_OK) {
       std::cerr << "Failed to initialize GLEW" << std::endl;
       return;
@@ -227,7 +227,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     glBindVertexArray(vao_);
     for (unsigned int i = 0; i < 10; i++) {
       // calculate the model matrix for each object and pass it to shader before drawing
-      glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+      glm::mat4 model = glm::mat4(1.0f);  // make sure to initialize matrix to identity matrix first
       model = glm::translate(model, cubePositions[i]);
       float angle = 20.0f * i;
       model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
@@ -277,7 +277,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
   glm::vec3 camera_up_    = glm::vec3(0.0f, 1.0f,  0.0f);
 
   // timing
-  float delta_time_ = 0.0f;	// time between current frame and last frame
+  float delta_time_ = 0.0f;  // time between current frame and last frame
   float last_frame_ = 0.0f;
 };
 

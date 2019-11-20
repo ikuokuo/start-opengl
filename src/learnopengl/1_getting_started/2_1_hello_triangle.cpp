@@ -12,7 +12,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
   void OnGlfwInit(GlfwBase *) override {
     // Initialize GLEW
-    glewExperimental = true; // Needed in core profile
+    glewExperimental = true;  // Needed in core profile
     if (glewInit() != GLEW_OK) {
       std::cerr << "Failed to initialize GLEW" << std::endl;
       return;
@@ -78,9 +78,9 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
     float vertices[] = {
-      -0.5f, -0.5f, 0.0f, // left
-        0.5f, -0.5f, 0.0f, // right
-        0.0f,  0.5f, 0.0f  // top
+      -0.5f, -0.5f, 0.0f,  // left
+       0.5f, -0.5f, 0.0f,  // right
+       0.0f,  0.5f, 0.0f,  // top
     };
 
     GLuint &VAO = vao_;
@@ -104,7 +104,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     glBindVertexArray(0);
 
     // uncomment this call to draw in wireframe polygons.
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   }
 
   void OnGlfwDraw(GlfwBase *glfw) override {
@@ -115,7 +115,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
     // draw our first triangle
     glUseProgram(shader_program_);
-    glBindVertexArray(vao_); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+    glBindVertexArray(vao_);  // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
     glDrawArrays(GL_TRIANGLES, 0, 3);
     // glBindVertexArray(0); // no need to unbind it every time
 

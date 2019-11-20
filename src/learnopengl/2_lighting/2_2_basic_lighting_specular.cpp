@@ -212,7 +212,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     lamp_shader_.SetMat4("view", view);
     model = glm::mat4(1.0f);
     model = glm::translate(model, light_pos_);
-    model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+    model = glm::scale(model, glm::vec3(0.2f));  // a smaller cube
     lamp_shader_.SetMat4("model", model);
 
     glBindVertexArray(light_vao_);

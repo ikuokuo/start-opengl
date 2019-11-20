@@ -15,7 +15,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
   void OnGlfwInit(GlfwBase *) override {
     // Initialize GLEW
-    glewExperimental = true; // Needed in core profile
+    glewExperimental = true;  // Needed in core profile
     if (glewInit() != GLEW_OK) {
       std::cerr << "Failed to initialize GLEW" << std::endl;
       return;
@@ -83,10 +83,10 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
 
     // Set up vertex data: X, Y, R, G, B
     float vertices[] = {
-      -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, // top-left
-       0.5f,  0.5f, 0.0f, 1.0f, 0.0f, // top-right
-       0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // bottom-right
-      -0.5f, -0.5f, 1.0f, 1.0f, 0.0f  // bottom-left
+      -0.5f,  0.5f, 1.0f, 0.0f, 0.0f,  // top-left
+       0.5f,  0.5f, 0.0f, 1.0f, 0.0f,  // top-right
+       0.5f, -0.5f, 0.0f, 0.0f, 1.0f,  // bottom-right
+      -0.5f, -0.5f, 1.0f, 1.0f, 0.0f,  // bottom-left
     };
 
     // Create Vertex Array Object
