@@ -14,7 +14,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
   GlfwBaseCallbackImpl() {
   }
 
-  bool IsWindowCreatedOverride(GlfwBase *, GLFWwindow *) override { return true; };
+  bool IsWindowCreatedOverride(GlfwBase *, GLFWwindow *) override { return true; }
 
   void OnGlfwInit(GlfwBase *glfw) override {
     CameraHelper2::glfw_init(glfw->GetWindow(), true);

@@ -43,7 +43,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
   GlfwBaseCallbackImpl() : shader_(nullptr) {
   }
 
-  bool IsWindowCreatedOverride(GlfwBase *, GLFWwindow *) override { return true; };
+  bool IsWindowCreatedOverride(GlfwBase *, GLFWwindow *) override { return true; }
 
   void OnWindowCreated(GlfwBase *, GLFWwindow *window) override {
     glfwMakeContextCurrent(window);
