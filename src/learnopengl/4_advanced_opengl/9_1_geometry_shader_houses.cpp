@@ -1,7 +1,6 @@
 #include "base/glfw_base.h"
 
 #include <iostream>
-#include <memory>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -10,7 +9,7 @@
 
 class GlfwBaseCallbackImpl : public GlfwBaseCallback {
  public:
-  GlfwBaseCallbackImpl() : shader_(nullptr) {
+  GlfwBaseCallbackImpl() {
   }
 
   void OnGlfwInit(GlfwBase *) override {
@@ -78,8 +77,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
       })glsl";
 
     // Load shader program
-    shader_ = std::unique_ptr<Shader>(new Shader(
-      vertexShaderSource, fragmentShaderSource, geometryShaderSource));
+    shader_.Create(vertexShaderSource, fragmentShaderSource, geometryShaderSource);
 
     // Set up vertex data: X, Y, R, G, B
     float vertices[] = {
@@ -116,7 +114,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // draw points
-    shader_->Use();
+    shader_.Use();
     glBindVertexArray(vao_);
     glDrawArrays(GL_POINTS, 0, 4);
 
@@ -136,7 +134,7 @@ class GlfwBaseCallbackImpl : public GlfwBaseCallback {
   GLuint vao_;
   GLuint vbo_;
 
-  std::unique_ptr<Shader> shader_;
+  Shader shader_;
 };
 
 int main(int argc, char const *argv[]) {

@@ -7,9 +7,6 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
-
 #include <GL/glew.h>
 
 #include <string>
@@ -21,6 +18,7 @@
 
 #include "mesh.h"
 #include "shader.h"
+#include "stb_image_impl.h"
 
 unsigned int TextureFromFile(const char *path, const std::string &directory, bool gamma = false);
 
@@ -154,6 +152,9 @@ class Model {
     // 4. height maps
     std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
     textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
+    // 5. reflection maps
+    std::vector<Texture> reflectionMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_reflection");
+    textures.insert(textures.end(), reflectionMaps.begin(), reflectionMaps.end());
 
     // return a mesh object created from the extracted mesh data
     return Mesh(vertices, indices, textures);
