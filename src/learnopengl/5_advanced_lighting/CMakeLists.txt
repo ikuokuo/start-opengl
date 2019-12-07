@@ -15,6 +15,7 @@ unset(_outdir)
 
 set(gl_names
   1_advanced_lighting
+  2_gamma_correction
 )
 
 foreach(gl_name IN LISTS gl_names)
