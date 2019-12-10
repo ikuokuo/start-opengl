@@ -3,13 +3,11 @@
 set(MY_CURR ${CMAKE_CURRENT_LIST_DIR})
 
 set(MY_NAME "learnopengl/1_getting_started")
-set(_outdir "${MY_ROOT}/_output")
 set_outdir(
-  ARCHIVE "${_outdir}/lib/${MY_NAME}"
-  LIBRARY "${_outdir}/lib/${MY_NAME}"
-  RUNTIME "${_outdir}/bin/${MY_NAME}"
+  ARCHIVE "${MY_OUTPUT}/lib/${MY_NAME}"
+  LIBRARY "${MY_OUTPUT}/lib/${MY_NAME}"
+  RUNTIME "${MY_OUTPUT}/bin/${MY_NAME}"
 )
-unset(_outdir)
 
 ## targets
 
