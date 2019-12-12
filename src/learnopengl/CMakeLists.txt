@@ -2,7 +2,7 @@
 
 set(MY_CURR ${CMAKE_CURRENT_LIST_DIR})
 
-# add_gl_executable(NAME outdir LIBS libs)
+# add_gl_executable(NAME LIBS libs)
 macro(add_gl_executable NAME)
   set(options)
   set(oneValueArgs)
